@@ -31,23 +31,29 @@ class Laporan extends CI_Controller
 
     public function print()
     {
-        // panggil library yang kita buat sebelumnya yang bernama pdfgenerator
-        $this->load->library('pdfgenerator');
-
-        // filename dari pdf ketika didownload
-        $file_pdf = 'laporan_penjualan_toko_kita';
-        // setting paper
-        $paper = 'A4';
-        //orientasi paper potrait / 
-        $orientation = "portrait";
-
         $data['pend'] = $this->Laporan_model->getAllLaporanPenduduk();
-
-        $html = $this->load->view('laporan/print', $this->data, true);
-
-        // run dompdf
-        $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+        $this->load->view('laporan/print', $data);
     }
+
+    // public function print()
+    // {
+    //     // panggil library yang kita buat sebelumnya yang bernama pdfgenerator
+    //     $this->load->library('pdfgenerator');
+
+    //     // filename dari pdf ketika didownload
+    //     $file_pdf = 'laporan_penjualan_toko_kita';
+    //     // setting paper
+    //     $paper = 'A4';
+    //     //orientasi paper potrait / 
+    //     $orientation = "portrait";
+
+    //     $data['pend'] = $this->Laporan_model->getAllLaporanPenduduk();
+
+    //     $html = $this->load->view('laporan/print', $this->data, true);
+
+    //     // run dompdf
+    //     $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
+    // }
 
 
     public function kk()

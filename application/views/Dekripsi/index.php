@@ -22,6 +22,7 @@
                                     <th>No</th>
                                     <th>Nama File Awal</th>
                                     <th>Nama File Enkripsi</th>
+                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -30,6 +31,7 @@
                                 foreach ($dekripsi as $dekrip) { ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
+                                        <td><?= $dekrip = null; ?></td>
                                         <td><?= $dekrip = null; ?></td>
                                         <td><?= $dekrip = null; ?></td>
                                         <td>

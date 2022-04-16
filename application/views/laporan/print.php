@@ -25,11 +25,10 @@
 </head>
 
 <body>
+    <center>
+        <h3>Laporan Data Penduduk</h3>
+    </center>
     <table style="width: 100%;">
-        <center>
-            <h3>Laporan Data Penduduk</h3>
-        </center>
-        <br>
         <tr>
             <th>No</th>
             <th>NIK</th>
@@ -67,9 +66,6 @@
     <br>
     <br>
     <p style="text-align:Right">H. Arie Sunardi, S.H</p>
-    <script type="text/javascript">
-        window.print();
-    </script>
 </body>
 
 </html>

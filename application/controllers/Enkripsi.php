@@ -27,6 +27,8 @@ class Enkripsi extends CI_Controller
 
     public function import()
     {
+        $user = $this->db->get_where('tb_user', ['email' =>
+        $this->session->userdata('email')])->row_array();
         $key = "12345678";
         $bin_ciphertext = "";
         $ciphertext = "";
@@ -50,12 +52,61 @@ class Enkripsi extends CI_Controller
 
                 // write file txt
                 $nama_file = 'bin.ciphertext.txt';
-                force_download($nama_file, $bin_ciphertext);
+                // force_download($nama_file, $bin_ciphertext);
 
-                echo $plaintext;
-                echo $bin_ciphertext;
-                echo "<br>";
-                echo $ciphertext;
+                // Inisialisasi
+                $random_number = rand(1000, 100000);
+                $filename_pdf = $random_number . '-' . $_FILES['file']['name'];
+                $filename_enc = $random_number . '-' . $nama_file;
+                $format = "%Y-%m-%d";
+
+                $config['upload_path']          = './assets/file_decript/';
+                $config['file_name']            = $filename_pdf;
+                $config['allowed_types']        = 'pdf';
+                $config['max_size']             = 2048;
+                $config['max_width']            = 1024;
+                $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+                $this->load->helper('file');
+                $this->load->helper('date');
+
+
+                // Pindah file pdf ke folder file decript
+                if ($this->upload->do_upload('file')) {
+                    if (write_file(FCPATH . './assets/file_encript/' . $filename_enc, $bin_ciphertext)) {
+                        echo "BErhasil write file";
+
+                        $data = array(
+                            'id_user' => $user['id_user'],
+                            'nama_file' => $filename_pdf,
+                            'nama_file_enkrip' => $filename_enc,
+                            'password' => $this->input->post('password'),
+                            'tanggal' => mdate($format)
+                        );
+
+                        $this->Enkripsi_model->tambahDataEnkripsi($data);
+
+                        redirect('dekripsi');
+                    } else {
+                        echo "Gagal write file";
+                    }
+
+                    echo "Berhasil pindah";
+                } else {
+                    echo "Gagal pindah";
+                    $error = array('error' => $this->upload->display_errors());
+
+                    echo $error['error'];
+                }
+
+
+                // Write file txt ke folder encript
+
+                // echo $plaintext;
+                // echo $bin_ciphertext;
+                // echo "<br>";
+                // echo $ciphertext;
             }
         } else {
             redirect('Enkripsi');

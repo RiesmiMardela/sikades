@@ -29,11 +29,11 @@ class Laporan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function print()
-    {
-        $data['pend'] = $this->Laporan_model->getAllLaporanPenduduk();
-        $this->load->view('laporan/print', $data);
-    }
+    // public function print()
+    // {
+    //     $data['pend'] = $this->Laporan_model->getAllLaporanPenduduk();
+    //     $this->load->view('laporan/print', $data);
+    // }
 
     // public function print()
     // {
@@ -55,6 +55,12 @@ class Laporan extends CI_Controller
     //     $this->pdfgenerator->generate($html, $file_pdf, $paper, $orientation);
     // }
 
+    public function print()
+    {
+        $this->load->library('pdfgenerator');
+        $data['pend'] = $this->Laporan_model->getAllLaporanPenduduk();
+        $this->pdfgenerator->load_view('laporan/print', $data);
+    }
 
     public function kk()
 

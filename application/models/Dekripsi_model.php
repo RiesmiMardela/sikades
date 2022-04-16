@@ -6,6 +6,16 @@ class Dekripsi_model extends CI_Model
         return $this->db->get('tb_user')->result_array();
     }
 
+    public function getAllFile()
+    {
+        return $this->db->get('tb_file')->result_array();
+    }
+
+    public function getWhereFile($id_file)
+    {
+        return $this->db->get_where('tb_file', ['id_file' => $id_file])->row_array();
+    }
+
     public function formDataDekripsi()
     {
         $data = [

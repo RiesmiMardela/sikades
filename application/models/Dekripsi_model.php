@@ -16,14 +16,21 @@ class Dekripsi_model extends CI_Model
         return $this->db->get_where('tb_file', ['id_file' => $id_file])->row_array();
     }
 
-    public function formDataDekripsi()
+    public function getDekripsiById($id_file)
     {
-        $data = [
-            // "nik" => $this->input->post('nik', true),
-            // "nama" => $this->input->post('nama', true),
-        ];
+        return $this->db->get_where('tb_file', ['id_file' => $id_file])->row_array();
+    }
 
-        $this->db->insert('tb_pend', $data);
-        redirect('dekripsi');
+    public function hapusDataDekripsi($id_file)
+    {
+        $this->db->where('id_file', $id_file);
+        $this->db->delete('tb_file');
+    }
+
+    public function formDataDekripsi($data)
+    {
+        $this->db->where('id_file', $data);
+        $this->db->update('tb_file', $data);
+        // redirect('dekripsi');
     }
 }

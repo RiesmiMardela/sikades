@@ -68,7 +68,6 @@ class Dekripsi extends CI_Controller
 
             $desModule = new desModule();
 
-
             $password = $this->input->post('password');
 
             if ($data_file['password'] == $password) {
@@ -94,14 +93,10 @@ class Dekripsi extends CI_Controller
                 $pdfgenerator->loadHtml($plaintext);
                 $pdfgenerator->setPaper('A4', 'landscape');
                 $pdfgenerator->render();
-                $pdfgenerator->stream("Deskripsi");
+                $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
             } else {
                 echo "Salah password";
             }
-
-
-
-
 
             // $data = [
             //     "nama_file" => $this->input->post('nama_file', true),
@@ -111,6 +106,7 @@ class Dekripsi extends CI_Controller
             // $this->Dekripsi_model->formDataDekripsi($data);
             // $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             // Berhasil</div>');
+
             // redirect('dekripsi');
         }
     }

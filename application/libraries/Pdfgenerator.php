@@ -46,6 +46,6 @@ class Pdfgenerator extends Dompdf
         $time = time();
 
         // Output the generated PDF to Browser
-        $dompdf->stream("output-" . $time);
+        $dompdf->stream("Data Penduduk-" . $time);
     }
 }

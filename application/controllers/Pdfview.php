@@ -12,7 +12,7 @@ class Pdfview extends CI_Controller
         $this->data['title_pdf'] = 'Laporan Penjualan Toko Kita';
 
         // filename dari pdf ketika didownload
-        $file_pdf = 'laporan_penjualan_toko_kita';
+        $file_pdf = '';
         // setting paper
         $paper = 'A4';
         //orientasi paper potrait / landscape

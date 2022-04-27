@@ -49,11 +49,11 @@
             <input type="hidden" name="tanggal" value="<?= $data['tanggal'] ?>">
 
             <!-- <div class="card-footer"> -->
-            <button type="submit" class="btn btn-info"><i class="fas fa-unlock"></i> Dekripsi</button>
+            <button type="submit" class="btn btn-info ml-4 mb-4"><i class="fas fa-unlock"></i> Dekripsi</button>
             <!-- /.card-footer -->
             <!-- </form> -->
             </class>
-
     </div>
+</div>
 </div>
 <!-- End of Main Content -->

@@ -85,22 +85,28 @@ class Enkripsi extends CI_Controller
 
                     // Pindah file pdf ke folder file decript
                     if ($this->upload->do_upload('file')) {
-                        if (write_file(FCPATH . './assets/file_encript/' . $filename_enc, $bin_ciphertext)) {
-                            echo "BErhasil write file";
+                        if (write_file(FCPATH . './assets/file_chipertext/' . $filename_enc, $ciphertext)) {
+                            echo "Berhasil write chipertext file";
 
-                            $data = array(
-                                'id_user' => $user['id_user'],
-                                'nama_file' => $filename_pdf,
-                                'nama_file_enkrip' => $filename_enc,
-                                'password' => $this->input->post('password'),
-                                'tanggal' => mdate($format)
-                            );
+                            if (write_file(FCPATH . './assets/file_encript/' . $filename_enc, $bin_ciphertext)) {
+                                echo "BErhasil write file";
 
-                            $this->Enkripsi_model->tambahDataEnkripsi($data);
+                                $data = array(
+                                    'id_user' => $user['id_user'],
+                                    'nama_file' => $filename_pdf,
+                                    'nama_file_enkrip' => $filename_enc,
+                                    'password' => $this->input->post('password'),
+                                    'tanggal' => mdate($format)
+                                );
 
-                            redirect('dekripsi');
+                                $this->Enkripsi_model->tambahDataEnkripsi($data);
+
+                                redirect('dekripsi');
+                            } else {
+                                echo "Gagal write file";
+                            }
                         } else {
-                            echo "Gagal write file";
+                            echo "gagal write file chipertext";
                         }
 
                         echo "Berhasil pindah";

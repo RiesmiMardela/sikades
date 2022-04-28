@@ -32,7 +32,7 @@ class Dekripsi extends CI_Controller
         $file = $this->Dekripsi_model->getWhereFile($id_file);
 
         $name_file = $file['nama_file_enkrip'];
-        $data = file_get_contents('./assets/file_encript/' . $name_file);
+        $data = file_get_contents('./assets/file_chipertext/' . $name_file);
 
         print_r($file);
 
@@ -95,7 +95,11 @@ class Dekripsi extends CI_Controller
                 $pdfgenerator->render();
                 $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
             } else {
-                echo "Salah password";
+                // echo "Salah password";
+                $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">
+                    Password salah
+                    </div>');
+                redirect('dekripsi/dekrip/' . $id_file);
             }
 
             // $data = [

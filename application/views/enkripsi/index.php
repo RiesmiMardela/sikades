@@ -49,11 +49,16 @@
 
                 <div class=" card-body">
                     <div class="col-sm-8">
-                        <!-- <p>Enkripsi merupakan proses teknis yang mengonversikan informasi menjadi kode rahasia, sehingga mengaburkan data yang Anda kirim, terima, atau simpan.
-                            Tujuan dari enkripsi adalah untuk melindungi kerahasiaan data digital yang disimpan pada
-                            sistem komputer atau ditransmisikan melalui internet atau jaringan komputer lainnya.
-                            Sedangkan Dekripsi merupakan kebalikan dari proses enkripsi yaitu proses konversi data yang sudah
-                            dienkripsi kembali menjadi data aslinya sehingga dapat dibaca/ dimengerti kembali.</p> -->
+                        <div class="col-sm-30">
+                            <p style="text-indent: 35px; text-align: justify">Enkripsi merupakan proses teknis yang mengonversikan informasi menjadi kode rahasia,
+                                sehingga mengaburkan data yang dikirim, diterima, atau disimpan.
+                                Tujuan dari enkripsi adalah untuk melindungi kerahasiaan data digital yang disimpan pada
+                                sistem komputer atau ditransmisikan melalui internet atau jaringan komputer lainnya.
+                                Sedangkan Dekripsi merupakan kebalikan dari proses enkripsi yaitu proses konversi data yang sudah
+                                dienkripsi kembali menjadi data aslinya sehingga dapat dibaca/ dimengerti kembali.<br>
+                                Langkah-langkahnya sebagai berikut.
+                            </p>
+                        </div>
                         <ol class="list-group list-group-numbered">
                             <li>Masukkan file yang akan dienkripsi atau diamankan.</li>
                             <li>Setelah itu masukkan kunci.</li>

@@ -40,6 +40,33 @@
                 </form>
             </div>
         </div>
+
+        <div class="card card-info mt-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-black">Langkah-langkah Melakukan Enkripsi</h6>
+                </div>
+
+                <div class=" card-body">
+                    <div class="col-sm-8">
+                        <!-- <p>Enkripsi merupakan proses teknis yang mengonversikan informasi menjadi kode rahasia, sehingga mengaburkan data yang Anda kirim, terima, atau simpan.
+                            Tujuan dari enkripsi adalah untuk melindungi kerahasiaan data digital yang disimpan pada
+                            sistem komputer atau ditransmisikan melalui internet atau jaringan komputer lainnya.
+                            Sedangkan Dekripsi merupakan kebalikan dari proses enkripsi yaitu proses konversi data yang sudah
+                            dienkripsi kembali menjadi data aslinya sehingga dapat dibaca/ dimengerti kembali.</p> -->
+                        <ol class="list-group list-group-numbered">
+                            <li>Masukkan file yang akan dienkripsi atau diamankan.</li>
+                            <li>Setelah itu masukkan kunci.</li>
+                            <li>Lalu klik Tombol Enkripsi.</li>
+                            <li>Apabila ingin mengetahui perhitungan manualnya bisa klik tombol Proses.</li>
+                            <li>Setelah melakukan enkripsi, file tersebut akan masuk ke dalam form Data Dekripsi.</li>
+                            <li>Untuk mengembalikan file seperti semula lalukan proses Dekripsi, caranya dengan
+                                memasukkan kunci yang telah dibuat waktu melakukan enkripsi.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </div>

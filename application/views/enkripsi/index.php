@@ -15,7 +15,7 @@
                     <h6 class="m-0 font-weight-bold text-black">Data Enkripsi</h6>
                 </div>
             </div>
-            <div class=" card-body">
+            <div class="card-body">
                 <form method="POST" action="<?= base_url('Enkripsi/import') ?>" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Input File</label>
@@ -47,9 +47,9 @@
                     <h6 class="m-0 font-weight-bold text-black">Langkah-langkah Melakukan Enkripsi</h6>
                 </div>
 
-                <div class=" card-body">
-                    <div class="col-sm-8">
-                        <div class="col-sm-30">
+                <div class="card-body">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
                             <p style="text-indent: 35px; text-align: justify">Enkripsi merupakan proses teknis yang mengonversikan informasi menjadi kode rahasia,
                                 sehingga mengaburkan data yang dikirim, diterima, atau disimpan.
                                 Tujuan dari enkripsi adalah untuk melindungi kerahasiaan data digital yang disimpan pada
@@ -59,15 +59,17 @@
                                 Langkah-langkahnya sebagai berikut.
                             </p>
                         </div>
-                        <ol class="list-group list-group-numbered">
-                            <li>Masukkan file yang akan dienkripsi atau diamankan.</li>
-                            <li>Setelah itu masukkan kunci.</li>
-                            <li>Lalu klik Tombol Enkripsi.</li>
-                            <li>Apabila ingin mengetahui perhitungan manualnya bisa klik tombol Proses.</li>
-                            <li>Setelah melakukan enkripsi, file tersebut akan masuk ke dalam form Data Dekripsi.</li>
-                            <li>Untuk mengembalikan file seperti semula lalukan proses Dekripsi, caranya dengan
-                                memasukkan kunci yang telah dibuat waktu melakukan enkripsi.</li>
-                        </ol>
+                        <div class="col-sm-12">
+                            <ol class="list-group list-group-numbered">
+                                <li>Masukkan file yang akan dienkripsi atau diamankan.</li>
+                                <li>Setelah itu masukkan kunci.</li>
+                                <li>Lalu klik Tombol Enkripsi.</li>
+                                <li>Apabila ingin mengetahui perhitungan manualnya bisa klik tombol Proses.</li>
+                                <li>Setelah melakukan enkripsi, file tersebut akan masuk ke dalam form Data Dekripsi.</li>
+                                <li>Untuk mengembalikan file seperti semula lalukan proses Dekripsi, caranya dengan
+                                    memasukkan kunci yang telah dibuat waktu melakukan enkripsi.</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>

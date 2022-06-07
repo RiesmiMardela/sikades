@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST" action="<?= base_url('Enkripsi/import') ?>" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Input File</label>
                         <div class="col-sm-10">
@@ -32,8 +32,8 @@
                     </div>
 
                     <!-- <div class="card-footer"> -->
-                    <button type="submit" class="btn btn-info"><i class="fas fa-lock"></i> Enkripsi</button>
-                    <button type="submit" class="btn btn-info"><i class="fas fa-fw fa-sync"></i> Proses</button>
+                    <button type="submit" formaction="<?= base_url('Enkripsi/import') ?>" class="btn btn-info"><i class="fas fa-lock"></i> Enkripsi</button>
+                    <button type="submit" formaction="<?= base_url('Enkripsi/process') ?>" class="btn btn-info"><i class="fas fa-fw fa-sync"></i> Proses</button>
                     <!-- <p><a href="<?= base_url('Pdfview'); ?>">PDF</p> -->
                     <!-- </div> -->
                     <!-- /.card-footer -->

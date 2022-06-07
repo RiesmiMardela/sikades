@@ -62,7 +62,7 @@ class Enkripsi extends CI_Controller
                     // print_r($arr_plaintext);
 
                     // write file txt
-                    $nama_file = 'bin.ciphertext.txt';
+                    $nama_file = $_FILES['file']['name'] . '.txt';
                     // force_download($nama_file, $bin_ciphertext);
 
                     // Inisialisasi
@@ -124,6 +124,49 @@ class Enkripsi extends CI_Controller
                     // echo $bin_ciphertext;
                     // echo "<br>";
                     // echo $ciphertext;
+                }
+            } else {
+                redirect('Enkripsi');
+            }
+        }
+    }
+
+    public function process()
+    {
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            redirect('enkripsi');
+        } else {
+            $user = $this->db->get_where('tb_user', ['email' =>
+            $this->session->userdata('email')])->row_array();
+            $key = $this->input->post('password');
+            $bin_ciphertext = "";
+            $ciphertext = "";
+
+            if (isset($_FILES['file'])) {
+                if ($_FILES['file']['type'] == "application/pdf") {
+                    $this->load->library('pdfgenerator');
+
+
+                    $desModule = new desModule();
+                    $pdf = new PdftoText($_FILES['file']['tmp_name']);
+                    $data = $pdf->Text;
+
+                    // encrypt
+                    $plaintext = trim($data);
+
+                    $arr_plaintext = str_split($plaintext, 8);
+                    $proses = 0;
+
+                    echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-sync'></i>Back</button><br><br>";
+
+                    foreach ($arr_plaintext as $i) {
+                        echo "Proses ke " . ++$proses . " <br>";
+                        $encrypt = $desModule->encrypt($i, $key, true);
+                        $bin_ciphertext .= $encrypt;
+                        $ciphertext .= $desModule->read_bin($encrypt);
+                    }
                 }
             } else {
                 redirect('Enkripsi');

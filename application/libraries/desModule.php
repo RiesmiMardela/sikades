@@ -25,6 +25,9 @@ class desModule
         return $binary;
     }
 
+    /**
+     * Mengkonversi text ke format biner (hasil belum sempurna)
+     */
     function bin2text($bin)
     {
         $string = null;
@@ -32,6 +35,9 @@ class desModule
         return $string;
     }
 
+    /**
+     * Memnformat Hasil Binery ke format yang benar (8-bit)
+     */
     function bin8($bin)
     {
         $_bin = "";
@@ -104,6 +110,8 @@ class desModule
         return $result;
     }
 
+    public $array_tampil_left_shift = [];
+
     function left_shift($c, $d)
     {
         $_left_shift = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
@@ -111,6 +119,7 @@ class desModule
         $array_d = [];
         $n = count($_left_shift);
 
+        $this->array_tampil_left_shift = [];
         for ($i = 0; $i < $n; $i++) {
             $rotation = $_left_shift[$i];
             if ($rotation == 1) {
@@ -134,6 +143,7 @@ class desModule
             }
             array_push($array_c, $c);
             array_push($array_d, $d);
+            array_push($this->array_tampil_left_shift, "CD({$i}): " . json_encode($c) . " " . json_encode($d) . "<br>");
         }
 
         $array_cd = [];
@@ -414,17 +424,20 @@ class desModule
         return $cipher;
     }
 
-    function encrypt($plaintext, $key)
+    function encrypt($plaintext, $key, $tampil_proses = false)
     {
+        $tampilText = "text: $plaintext <br>";
         $key = $this->text2bin($key);
         $key8 = [];
         foreach ($key as $i) {
             $i8 = $this->bin8($i);
             $key8[] = $i8;
         }
+        $tampilKey8 =  json_encode($key8);
         $key8 = implode("", $key8);
 
         $out_pc1 = $this->pc1($key8);
+        $tampilPc1 = json_encode($out_pc1);
         $c = substr($out_pc1, 0, 28);
         $d = substr($out_pc1, 28);
 
@@ -432,7 +445,12 @@ class desModule
         $c = $out_left_shift[0];
         $d = $out_left_shift[1];
 
+        $tampilC = json_encode($c);
+        $tampild = json_encode($d);
+        $tampilShiftL = json_encode($out_left_shift);
+
         $k = $this->pc2($c, $d);
+        $tampilPc2 = json_encode($k);
 
         $plaintext = $this->text2bin($plaintext);
         $plaintext8 = [];
@@ -440,6 +458,8 @@ class desModule
             $i8 = $this->bin8($i);
             $plaintext8[] = $i8;
         }
+        $tampilPlaintext8 = json_encode($plaintext8);
+
         $plaintext8 = implode("", $plaintext8);
 
         while (strlen($plaintext8) < 64) {
@@ -447,14 +467,24 @@ class desModule
         }
 
         $out_ip = $this->ip($plaintext8);
+
         $l = $out_ip[0];
         $r = $out_ip[1];
 
+        $tampil_expansion = [];
+        $tampil_a = [];
+        $tampil_b = [];
+        $tampil_p = [];
+
         for ($i = 0; $i < 16; $i++) {
             $er = $this->expansion($r);
+            array_push($tampil_expansion, "Expansion($i): " . json_encode($er) . "<br>");
             $ai = $this->a($er, $k[$i]);
+            array_push($tampil_a, "Matrix A($i): " . json_encode($ai) . "<br>");
             $bi = $this->s_box($ai);
+            array_push($tampil_b, "SBox($i): " . json_encode($bi) . "<br>");
             $pb = $this->p_box($bi);
+            array_push($tampil_p, "PBox($i): " . json_encode($pb) . "<br>");
 
             $update_r = "";
             $n = strlen($pb);
@@ -471,6 +501,39 @@ class desModule
         $rl = $r . $l;
         $cipher = $this->final_permutation($rl);
 
+        if ($tampil_proses) {
+            echo $tampilText;
+            echo "Plaintext: " . $tampilPlaintext8 . " <br>";
+            echo "Password: " . $tampilKey8 . " <br>";
+
+            echo "PC1: " . $tampilPc1 . " <br>";
+            echo "PC2: " . $tampilPc2 . " <br>";
+
+            echo "C: " . $tampilC . " <br>";
+            echo "D: " . $tampild . " <br>";
+
+            foreach ($this->array_tampil_left_shift as $key => $value) {
+                echo $value;
+            }
+            echo "Left Shift: " . $tampilShiftL . " <br>";
+
+            foreach ($tampil_expansion as $key => $value) {
+                echo $value;
+            }
+            foreach ($tampil_a as $key => $value) {
+                echo $value;
+            }
+            foreach ($tampil_b as $key => $value) {
+                echo $value;
+            }
+            foreach ($tampil_p as $key => $value) {
+                echo $value;
+            }
+
+
+
+            echo "Hasil Encrypt: " . $cipher . "<br><br>";
+        }
         return $cipher;
     }
 

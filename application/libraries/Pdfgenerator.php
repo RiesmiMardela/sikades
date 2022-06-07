@@ -43,9 +43,9 @@ class Pdfgenerator extends Dompdf
 
         // Render the HTML as PDF
         $dompdf->render();
-        $time = time();
+        // $time = time();
 
         // Output the generated PDF to Browser
-        $dompdf->stream("Data Penduduk-" . $time);
+        $dompdf->stream("Data Penduduk");
     }
 }

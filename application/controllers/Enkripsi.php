@@ -133,7 +133,19 @@ class Enkripsi extends CI_Controller
 
     public function process()
     {
+        $data['title'] = 'Enkripsi';
+        $data['user'] = $this->db->get_where('tb_user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $data['enkripsi'] = $this->Enkripsi_model->getAllEnkripsi();
+
         $this->form_validation->set_rules('password', 'Password', 'required');
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('enkripsi/proses', $data);
+        $this->load->view('templates/footer');
 
         if ($this->form_validation->run() == FALSE) {
             redirect('enkripsi');
@@ -144,33 +156,34 @@ class Enkripsi extends CI_Controller
             $bin_ciphertext = "";
             $ciphertext = "";
 
-            if (isset($_FILES['file'])) {
-                if ($_FILES['file']['type'] == "application/pdf") {
-                    $this->load->library('pdfgenerator');
+            // if (isset($_FILES['file'])) {
+            //     if ($_FILES['file']['type'] == "application/pdf") {
+            //         $this->load->library('pdfgenerator');
 
 
-                    $desModule = new desModule();
-                    $pdf = new PdftoText($_FILES['file']['tmp_name']);
-                    $data = $pdf->Text;
+            //         $desModule = new desModule();
+            //         $pdf = new PdftoText($_FILES['file']['tmp_name']);
+            //         $data = $pdf->Text;
 
-                    // encrypt
-                    $plaintext = trim($data);
+            //         // encrypt
+            //         $plaintext = trim($data);
 
-                    $arr_plaintext = str_split($plaintext, 8);
-                    $proses = 0;
+            //         $arr_plaintext = str_split($plaintext, 8);
+            //         $proses = 0;
 
-                    echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-sync'></i>Back</button><br><br>";
 
-                    foreach ($arr_plaintext as $i) {
-                        echo "Proses ke " . ++$proses . " <br>";
-                        $encrypt = $desModule->encrypt($i, $key, true);
-                        $bin_ciphertext .= $encrypt;
-                        $ciphertext .= $desModule->read_bin($encrypt);
-                    }
-                }
-            } else {
-                redirect('Enkripsi');
-            }
+            //         echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-sync'></i>Back</button><br><br>";
+
+            //         foreach ($arr_plaintext as $i) {
+            //             echo "Proses ke " . ++$proses . " <br>";
+            //             $encrypt = $desModule->encrypt($i, $key, true);
+            //             $bin_ciphertext .= $encrypt;
+            //             $ciphertext .= $desModule->read_bin($encrypt);
+            //         }
+            //     }
+            // } else {
+            //     redirect('Enkripsi');
+            // }
         }
     }
 }

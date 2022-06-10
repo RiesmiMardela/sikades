@@ -143,7 +143,7 @@ class desModule
             }
             array_push($array_c, $c);
             array_push($array_d, $d);
-            array_push($this->array_tampil_left_shift, "CD({$i}): " . json_encode($c) . " " . json_encode($d) . "<br>");
+            array_push($this->array_tampil_left_shift, "<tr><td>CD({$i})</td><td>:</td><td>" . json_encode($c) . " " . json_encode($d) . "</td></tr>");
         }
 
         $array_cd = [];
@@ -426,7 +426,7 @@ class desModule
 
     function encrypt($plaintext, $key, $tampil_proses = false)
     {
-        $tampilText = "text: $plaintext <br>";
+        $tampilText = "$plaintext";
         $key = $this->text2bin($key);
         $key8 = [];
         foreach ($key as $i) {
@@ -478,13 +478,13 @@ class desModule
 
         for ($i = 0; $i < 16; $i++) {
             $er = $this->expansion($r);
-            array_push($tampil_expansion, "Expansion($i): " . json_encode($er) . "<br>");
+            array_push($tampil_expansion, "<tr><td>Expansion($i)</td><td>:</td><td>" . json_encode($er) . "</td></tr>");
             $ai = $this->a($er, $k[$i]);
-            array_push($tampil_a, "Matrix A($i): " . json_encode($ai) . "<br>");
+            array_push($tampil_a, "<tr><td>Matrix A($i)</td><td>:</td><td>" . json_encode($ai) . "</td></tr>");
             $bi = $this->s_box($ai);
-            array_push($tampil_b, "SBox($i): " . json_encode($bi) . "<br>");
+            array_push($tampil_b, "<tr><td>SBox($i)</td><td>:</td><td>" . json_encode($bi) . "</td></tr>");
             $pb = $this->p_box($bi);
-            array_push($tampil_p, "PBox($i): " . json_encode($pb) . "<br>");
+            array_push($tampil_p, "<tr><td>PBox($i)</td><td>:</td><td>" . json_encode($pb) . "</td></tr>");
 
             $update_r = "";
             $n = strlen($pb);
@@ -502,20 +502,20 @@ class desModule
         $cipher = $this->final_permutation($rl);
 
         if ($tampil_proses) {
-            echo $tampilText;
-            echo "Plaintext: " . $tampilPlaintext8 . " <br>";
-            echo "Password: " . $tampilKey8 . " <br>";
+            echo "<table class='table table-responsive'><tbody><tr><td>Text</td><td>:</td><td>$tampilText</td></tr>";
+            echo "<tr><td>Plaintext</td><td>:</td><td>" . $tampilPlaintext8 . "</td></tr>";
+            echo "<tr><td>Password</td><td>:</td><td>" . $tampilKey8 . " </td></tr>";
 
-            echo "PC1: " . $tampilPc1 . " <br>";
-            echo "PC2: " . $tampilPc2 . " <br>";
+            echo "<tr><td>PC1</td><td>:</td><td>" . $tampilPc1 . "</td></tr>";
+            echo "<tr><td>PC2</td><td>:</td><td>" . $tampilPc2 . "</td></tr>";
 
-            echo "C: " . $tampilC . " <br>";
-            echo "D: " . $tampild . " <br>";
+            echo "<tr><td>C</td><td>:</td><td>" . $tampilC . "</td></tr>";
+            echo "<tr><td>D</td><td>:</td><td>" . $tampild . "</td></tr>";
 
             foreach ($this->array_tampil_left_shift as $key => $value) {
                 echo $value;
             }
-            echo "Left Shift: " . $tampilShiftL . " <br>";
+            echo "<tr><td>Left Shift</td><td>:</td><td>" . $tampilShiftL . "</td></tr>";
 
             foreach ($tampil_expansion as $key => $value) {
                 echo $value;
@@ -532,7 +532,7 @@ class desModule
 
 
 
-            echo "Hasil Encrypt: " . $cipher . "<br><br>";
+            echo "<tr><td>Hasil Encrypt</td><td>:</td><td>" . $cipher . "</td></tr></tbody></table>";
         }
         return $cipher;
     }

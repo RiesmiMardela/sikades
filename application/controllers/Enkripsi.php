@@ -44,7 +44,7 @@ class Enkripsi extends CI_Controller
                     $this->load->library('DesModule');
 
 
-                    $desModule = new DesModule();
+                    $this->DesModule = new DesModule();
                     $pdf = new PdftoText($_FILES['file']['tmp_name']);
                     $data = $pdf->Text;
 
@@ -53,9 +53,9 @@ class Enkripsi extends CI_Controller
 
                     $arr_plaintext = str_split($plaintext, 8);
                     foreach ($arr_plaintext as $i) {
-                        $encrypt = $desModule->encrypt($i, $key);
+                        $encrypt = $this->DesModule->encrypt($i, $key);
                         $bin_ciphertext .= $encrypt;
-                        $ciphertext .= $desModule->read_bin($encrypt);
+                        $ciphertext .= $this->DesModule->read_bin($encrypt);
                     }
 
                     // echo $bin_ciphertext;

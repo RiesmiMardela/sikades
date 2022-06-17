@@ -112,7 +112,7 @@ $system_path = 'system';
  *
  * NO TRAILING SLASH!
  */
-$application_folder = getcwd() . '/../application';
+$application_folder = 'application';
 
 /*
  *---------------------------------------------------------------

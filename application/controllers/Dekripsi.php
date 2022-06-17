@@ -77,7 +77,6 @@ class Dekripsi extends CI_Controller
             $password = $this->input->post('password');
 
             if ($data_file['password'] == $password) {
-                echo "Bener password";
                 $path = "assets/file_encript/" . $this->input->post('nama_file_enkrip');
 
                 $bin_ciphertext = (string) file_get_contents($path);
@@ -94,6 +93,14 @@ class Dekripsi extends CI_Controller
 
                 // echo $decrypt;
                 // echo "<br>" . $plaintext;
+
+                // header('Content-Description: File Transfer');
+                // header('Content-Type: application/octet-stream');
+                // header('Content-Disposition: attachment; filename="' . $data_file['nama_file'] . '"');
+                // header('Expires: 0');
+                // header('Cache-Control: must-revalidate');
+                // header('Pragma: public');
+                // header('Content-Length: ' . filesize('' . $data_file));
 
                 $pdfgenerator = new Pdfgenerator();
                 $pdfgenerator->loadHtml($plaintext);

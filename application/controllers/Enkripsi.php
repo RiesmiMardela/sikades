@@ -43,7 +43,7 @@ class Enkripsi extends CI_Controller
                     $this->load->library('pdfgenerator');
 
 
-                    $desModule = new desModule();
+                    $desModule = new DesModule();
                     $pdf = new PdftoText($_FILES['file']['tmp_name']);
                     $data = $pdf->Text;
 

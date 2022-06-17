@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-class desModule
+class DesModule
 {
     function dump($obj)
     {

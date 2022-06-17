@@ -41,7 +41,7 @@ class Dekripsi extends CI_Controller
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
-        header('Content-Length: ' . filesize($data));
+        header('Content-Length: ' . filesize($file));
 
         // $this->load->helper('download');
 

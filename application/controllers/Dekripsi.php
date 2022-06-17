@@ -35,12 +35,13 @@ class Dekripsi extends CI_Controller
 
         // print_r($file);
 
+        header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
-        header("Content-Disposition: attachment; filename='$name_file'");
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        header('Content-Length: ' . filesize($file));
-        ob_clean();
-        flush();
+        header('Content-Disposition: attachment; filename="' . basename($data) . '"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($data));
 
         $this->load->helper('download');
 

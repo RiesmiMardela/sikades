@@ -28,13 +28,12 @@ class Dekripsi extends CI_Controller
 
     public function download($id_file)
     {
-        $this->load->helper('download');
         $file = $this->Dekripsi_model->getWhereFile($id_file);
 
         $name_file = $file['nama_file_enkrip'];
         $data = file_get_contents('./assets/file_chipertext/' . $name_file);
 
-        print_r($file);
+        // print_r($file);
 
         header('Content-Type: application/octet-stream');
         header("Content-Disposition: attachment; filename='$name_file'");
@@ -43,6 +42,7 @@ class Dekripsi extends CI_Controller
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Pragma: public');
         header('Content-Length: ' . filesize($file));
+        $this->load->helper('download');
 
         force_download($name_file, $data);
         redirect('dekripsi');

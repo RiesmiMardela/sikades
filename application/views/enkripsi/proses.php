@@ -18,7 +18,6 @@
                     if ($_FILES['file']['type'] == "application/pdf") {
                         $this->load->library('pdfgenerator');
 
-
                         $desModule = new desModule();
                         $pdf = new PdftoText($_FILES['file']['tmp_name']);
                         $data = $pdf->Text;

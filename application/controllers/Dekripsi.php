@@ -46,6 +46,7 @@ class Dekripsi extends CI_Controller
         // $this->load->helper('download');
 
         echo "$data";
+        header_remove();
         redirect('dekripsi');
     }
 

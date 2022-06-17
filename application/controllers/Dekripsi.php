@@ -36,6 +36,14 @@ class Dekripsi extends CI_Controller
 
         print_r($file);
 
+        header('Content-Type: application/octet-stream');
+        header("Content-Disposition: attachment; filename='$name_file'");
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+
         force_download($name_file, $data);
         redirect('dekripsi');
     }

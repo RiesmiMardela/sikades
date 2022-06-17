@@ -101,7 +101,7 @@ class Enkripsi extends CI_Controller
 
                                 $this->Enkripsi_model->tambahDataEnkripsi($data);
 
-                                header('Location: /dekripsi');
+                                echo "<script>window.location.href = '/dekripsi'</script>";
                             } else {
                                 echo "Gagal write file";
                             }

@@ -22,7 +22,7 @@ class Dekripsi extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dekripsi/index', $data);
+        $this->load->view('Dekripsi/index', $data);
         $this->load->view('templates/footer');
     }
 

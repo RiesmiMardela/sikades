@@ -18,7 +18,6 @@
                     if ($_FILES['file']['type'] == "application/pdf") {
                         $this->load->library('pdfgenerator');
 
-                        $desModule = new desModule();
                         $pdf = new PdftoText($_FILES['file']['tmp_name']);
                         $data = $pdf->Text;
 
@@ -33,9 +32,9 @@
 
                         foreach ($arr_plaintext as $i) {
                             echo "<b>Proses ke " . ++$proses . "</b> <br>";
-                            $encrypt = $desModule->encrypt($i, $key, true);
+                            $encrypt = $this->encrypt($i, $key, true);
                             $bin_ciphertext .= $encrypt;
-                            $ciphertext .= $desModule->read_bin($encrypt);
+                            $ciphertext .= $this->read_bin($encrypt);
                         }
                     }
                 } else {

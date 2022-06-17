@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-require_once '/application/libraries/DesModule.php';
+include '/home/sikadesm/public_html/application/libraries/DesModule.php';
 
 class Enkripsi extends CI_Controller
 {

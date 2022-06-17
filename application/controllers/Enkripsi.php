@@ -41,6 +41,7 @@ class Enkripsi extends CI_Controller
             if (isset($_FILES['file'])) {
                 if ($_FILES['file']['type'] == "application/pdf") {
                     $this->load->library('pdfgenerator');
+                    $this->load->library('DesModule');
 
 
                     $desModule = new DesModule();

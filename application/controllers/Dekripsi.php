@@ -28,7 +28,6 @@ class Dekripsi extends CI_Controller
 
     public function download($id_file)
     {
-        ob_start();
         $file = $this->Dekripsi_model->getWhereFile($id_file);
 
         $name_file = $file['nama_file_enkrip'];
@@ -47,8 +46,6 @@ class Dekripsi extends CI_Controller
         // $this->load->helper('download');
 
         echo "$data";
-        ob_end_flush();
-        header('location: /dekripsi');
     }
 
     public function dekrip($id_file)

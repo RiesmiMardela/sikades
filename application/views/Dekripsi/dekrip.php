@@ -16,7 +16,7 @@
                 </div>
             </div>
             <!-- <form class="form-horizontal" action="" method="POST"> -->
-            <?= form_open_multipart('dekripsi/dekrip/' . $data['id_file']); ?>
+            <?= form_open_multipart('dekripsi/dekrip/' . $data['id_file'], ['target' => '_blank']); ?>
             <input type="hidden" name="id_file" value="<?= $data['id_file'] ?>">
             <input type="hidden" name="id_user" value="<?= $data['id_user'] ?>">
             <div class=" card-body">

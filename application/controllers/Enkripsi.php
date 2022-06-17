@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once '/application/libraries/DesModule.php';
 
 class Enkripsi extends CI_Controller
 {
@@ -41,10 +42,9 @@ class Enkripsi extends CI_Controller
             if (isset($_FILES['file'])) {
                 if ($_FILES['file']['type'] == "application/pdf") {
                     $this->load->library('pdfgenerator');
-                    $this->load->library('DesModule');
 
 
-                    $this->DesModule = new DesModule();
+                    $desModule = new DesModule();
                     $pdf = new PdftoText($_FILES['file']['tmp_name']);
                     $data = $pdf->Text;
 
@@ -53,9 +53,9 @@ class Enkripsi extends CI_Controller
 
                     $arr_plaintext = str_split($plaintext, 8);
                     foreach ($arr_plaintext as $i) {
-                        $encrypt = $this->DesModule->encrypt($i, $key);
+                        $encrypt = $desModule->encrypt($i, $key);
                         $bin_ciphertext .= $encrypt;
-                        $ciphertext .= $this->DesModule->read_bin($encrypt);
+                        $ciphertext .= $desModule->read_bin($encrypt);
                     }
 
                     // echo $bin_ciphertext;

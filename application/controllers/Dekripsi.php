@@ -44,7 +44,7 @@ class Dekripsi extends CI_Controller
 
         $this->load->helper('download');
 
-        force_download($name_file, $data);
+        readfile($data);
         redirect('dekripsi');
     }
 

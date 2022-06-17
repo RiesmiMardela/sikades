@@ -138,6 +138,7 @@ class Enkripsi extends CI_Controller
         $this->session->userdata('email')])->row_array();
 
         $data['enkripsi'] = $this->Enkripsi_model->getAllEnkripsi();
+        $data['this'] = $this;
 
         $this->form_validation->set_rules('password', 'Password', 'required');
 

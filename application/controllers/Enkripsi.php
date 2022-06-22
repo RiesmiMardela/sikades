@@ -176,7 +176,7 @@ class Enkripsi extends CI_Controller
                         $encrypt = $this->DesModule->encrypt($i, $key, true);
                         $bin_ciphertext .= $encrypt;
                         $ciphertext .= $this->DesModule->read_bin($encrypt);
-                        $tampil_proses[$proses] .= $this->proses_encrypt;
+                        $tampil_proses[$proses] .= $this->DesModule->proses_encrypt;
                         $proses++;
                     }
 

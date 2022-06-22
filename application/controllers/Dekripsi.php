@@ -85,7 +85,7 @@ class Dekripsi extends CI_Controller
 
                 // echo "<br>" . $bin_ciphertext;
                 // print_r($arr_ciphertext);
-                $desModule = new DESModule();
+                $desModule = new DES();
 
                 foreach ($arr_ciphertext as $i) {
                     $decrypt = $desModule->decrypt($i, $password);

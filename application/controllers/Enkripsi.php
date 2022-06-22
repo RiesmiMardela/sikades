@@ -50,7 +50,7 @@ class Enkripsi extends CI_Controller
 
                     // encrypt
                     $plaintext = trim($data);
-                    $desModule = new DESModule();
+                    $desModule = new DES();
 
                     $arr_plaintext = str_split($plaintext, 8);
                     foreach ($arr_plaintext as $i) {
@@ -170,7 +170,7 @@ class Enkripsi extends CI_Controller
                     $proses = 0;
 
                     $tampil_proses = [];
-                    $desModule = new DESModule();
+                    $desModule = new DES();
 
                     foreach ($arr_plaintext as $i) {
                         $tampil_proses[$proses] = "";

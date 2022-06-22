@@ -85,11 +85,12 @@ class Dekripsi extends CI_Controller
 
                 // echo "<br>" . $bin_ciphertext;
                 // print_r($arr_ciphertext);
+                $desModule = new DESModule();
 
                 foreach ($arr_ciphertext as $i) {
-                    $decrypt = $this->DesModule->decrypt($i, $password);
-                    $plaintext .= $this->DesModule->read_bin($decrypt);
-                    $ciphertext .= $this->DesModule->read_bin($i);
+                    $decrypt = $desModule->decrypt($i, $password);
+                    $plaintext .= $desModule->read_bin($decrypt);
+                    $ciphertext .= $desModule->read_bin($i);
                 }
 
                 // echo $decrypt;

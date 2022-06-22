@@ -50,12 +50,13 @@ class Enkripsi extends CI_Controller
 
                     // encrypt
                     $plaintext = trim($data);
+                    $desModule = new DESModule();
 
                     $arr_plaintext = str_split($plaintext, 8);
                     foreach ($arr_plaintext as $i) {
-                        $encrypt = $this->DesModule->encrypt($i, $key);
+                        $encrypt = $desModule->encrypt($i, $key);
                         $bin_ciphertext .= $encrypt;
-                        $ciphertext .= $this->DesModule->read_bin($encrypt);
+                        $ciphertext .= $desModule->read_bin($encrypt);
                     }
 
                     // echo $bin_ciphertext;
@@ -154,7 +155,7 @@ class Enkripsi extends CI_Controller
 
             if (isset($_FILES['file'])) {
                 if ($_FILES['file']['type'] == "application/pdf") {
-                    $this->load->library('DesModule');
+                    $this->load->library('DESModule');
                     $this->load->library('pdfgenerator');
                     $this->load->library('PDF2Text');
 
@@ -169,14 +170,15 @@ class Enkripsi extends CI_Controller
                     $proses = 0;
 
                     $tampil_proses = [];
+                    $desModule = new DESModule();
 
                     foreach ($arr_plaintext as $i) {
                         $tampil_proses[$proses] = "";
                         $tampil_proses[$proses] .= "Proses ke " . ($proses + 1) . " <br>";
-                        $encrypt = $this->DesModule->encrypt($i, $key, true);
+                        $encrypt = $desModule->encrypt($i, $key, true);
                         $bin_ciphertext .= $encrypt;
-                        $ciphertext .= $this->DesModule->read_bin($encrypt);
-                        $tampil_proses[$proses] .= $this->DesModule->proses_encrypt;
+                        $ciphertext .= $desModule->read_bin($encrypt);
+                        $tampil_proses[$proses] .= $desModule->proses_encrypt;
                         $proses++;
                     }
 

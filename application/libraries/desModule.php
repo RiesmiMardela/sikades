@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class DESModule
 {
 
-    function dump($obj)
+    public function dump($obj)
     {
         echo "<pre>";
         print_r($obj);
@@ -12,7 +12,7 @@ class DESModule
         echo "<br>";
     }
 
-    function text2bin($text)
+    public function text2bin($text)
     {
         $characters = str_split($text);
         $binary = [];
@@ -28,7 +28,7 @@ class DESModule
     /**
      * Mengkonversi text ke format biner (hasil belum sempurna)
      */
-    function bin2text($bin)
+    public function bin2text($bin)
     {
         $string = null;
         $string .= pack('H*', dechex(bindec($bin)));
@@ -38,7 +38,7 @@ class DESModule
     /**
      * Memnformat Hasil Binery ke format yang benar (8-bit)
      */
-    function bin8($bin)
+    public function bin8($bin)
     {
         $_bin = "";
         if (strlen($bin) < 8) {
@@ -52,7 +52,7 @@ class DESModule
         return $_bin;
     }
 
-    function bin4($bin)
+    public function bin4($bin)
     {
         $_bin = "";
         if (strlen($bin) < 4) {
@@ -66,17 +66,17 @@ class DESModule
         return $_bin;
     }
 
-    function bin2dec($bin)
+    public function bin2dec($bin)
     {
         return bindec($bin);
     }
 
-    function dec2bin($dec)
+    public function dec2bin($dec)
     {
         return decbin($dec);
     }
 
-    function read_bin($bin)
+    public function read_bin($bin)
     {
         $out = "";
         for ($i = 0; $i < strlen($bin); $i += 8) {
@@ -86,7 +86,7 @@ class DESModule
         return $out;
     }
 
-    function pc1($key)
+    public function pc1($key)
     {
         $_pc1 = [
             56, 48, 40, 32, 24, 16,  8,
@@ -112,7 +112,7 @@ class DESModule
 
     public $array_tampil_left_shift = [];
 
-    function left_shift($c, $d)
+    public function left_shift($c, $d)
     {
         $_left_shift = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
         $array_c = [];
@@ -153,7 +153,7 @@ class DESModule
         return $array_cd;
     }
 
-    function pc2($c, $d)
+    public function pc2($c, $d)
     {
         $_pc2 = [
             13, 16, 10, 23,  0,  4,
@@ -184,7 +184,7 @@ class DESModule
         return $k;
     }
 
-    function ip($plaintext)
+    public function ip($plaintext)
     {
         $_ip = [
             57, 49, 41, 33, 25, 17, 9,  1,
@@ -212,7 +212,7 @@ class DESModule
         return $array_lr;
     }
 
-    function expansion($r)
+    public function expansion($r)
     {
         $_expansion_table = [
             31,  0,  1,  2,  3,  4,
@@ -236,7 +236,7 @@ class DESModule
         return $er;
     }
 
-    function _xor($a, $b)
+    public function _xor($a, $b)
     {
         if ($a == $b) {
             return "0";
@@ -244,7 +244,7 @@ class DESModule
         return "1";
     }
 
-    function a($er, $k)
+    public function a($er, $k)
     {
         $result = "";
         $n = strlen($er);
@@ -268,7 +268,7 @@ class DESModule
         return $array_a;
     }
 
-    function s_box($a)
+    public function s_box($a)
     {
         $_s1 = [
             [14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7],
@@ -378,7 +378,7 @@ class DESModule
         return $result;
     }
 
-    function p_box($b)
+    public function p_box($b)
     {
         $_p_box = [
             15, 6, 19, 20, 28, 11,
@@ -400,7 +400,7 @@ class DESModule
         return $pb;
     }
 
-    function final_permutation($rl)
+    public function final_permutation($rl)
     {
         $_fp = [
             39,  7, 47, 15, 55, 23, 63, 31,
@@ -426,7 +426,7 @@ class DESModule
 
     public $proses_encrypt = "";
 
-    function encrypt($plaintext, $key, $tampil_proses = false)
+    public function encrypt($plaintext, $key, $tampil_proses = false)
     {
         $this->proses_encrypt = "";
         $tampilText = "$plaintext";
@@ -539,7 +539,7 @@ class DESModule
         return $cipher;
     }
 
-    function decrypt($cipher, $key)
+    public function decrypt($cipher, $key)
     {
         $key = $this->text2bin($key);
         $key8 = [];

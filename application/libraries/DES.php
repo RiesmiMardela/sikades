@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class DESModule
+class DES
 {
 
     public function dump($obj)

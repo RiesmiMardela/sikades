@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+require_once APPPATH . '/libraries/dompdf/autoload.inc.php';
+
+use Dompdf\Dompdf;
+
 class Dekripsi extends CI_Controller
 {
     public function __construct()
@@ -106,15 +110,15 @@ class Dekripsi extends CI_Controller
 
                 // echo "$plaintext";
 
-                $this->load->library('Pdfgenerator');
+                // $this->load->library('Pdfgenerator');
 
 
-                $pdfgenerator = new Pdfgenerator();
-                $pdfgenerator->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
-                // $pdfgenerator->loadHtml("<p>$plaintext</p>");
-                // $pdfgenerator->setPaper('A4', 'landscape');
-                // $pdfgenerator->render();
-                // $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
+                $pdfgenerator = new Dompdf();
+                // $pdfgenerator->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
+                $pdfgenerator->loadHtml("<p>$plaintext</p>");
+                $pdfgenerator->setPaper('A4', 'landscape');
+                $pdfgenerator->render();
+                $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
                 // exit();
             } else {
                 // echo "Salah password";

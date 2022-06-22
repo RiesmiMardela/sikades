@@ -2,8 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 // panggil autoload dompdf nya
-require_once 'dompdf-master/autoload.inc.php';
-include 'dompdf-master/pdf_to_text/PdfToText.phpclass';
+require_once 'dompdf/autoload.inc.php';
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

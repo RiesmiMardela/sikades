@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+include 'dompdf-master/pdf_to_text/PdfToText.phpclass';
 
 class PDF2Text
 {

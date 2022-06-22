@@ -154,10 +154,12 @@ class Enkripsi extends CI_Controller
             if (isset($_FILES['file'])) {
                 if ($_FILES['file']['type'] == "application/pdf") {
                     $this->load->library('pdfgenerator');
+                    $this->load->library('PDF2Text');
 
                     // $this = new this();
-                    $pdf = new PdftoText($_FILES['file']['tmp_name']);
-                    $file_data = $pdf->Text;
+                    $pdf = new Pdf2Text();
+                    $pdf->setFilename($_FILES['file']['tmp_name']);
+                    $file_data = $pdf->output();
 
                     // encrypt
                     $plaintext = trim($file_data);

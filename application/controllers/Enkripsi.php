@@ -44,7 +44,8 @@ class Enkripsi extends CI_Controller
                     $this->load->library('pdfgenerator');
 
 
-                    $pdf = new PdftoText($_FILES['file']['tmp_name']);
+                    $pdf = new Pdf2Text();
+                    $pdf->toText($_FILES['file']['tmp_name']);
                     $data = $pdf->Text;
 
                     // encrypt
@@ -159,7 +160,7 @@ class Enkripsi extends CI_Controller
                     // $this = new this();
                     $pdf = new Pdf2Text();
                     $pdf->toText($_FILES['file']['tmp_name']);
-                    $file_data = $pdf->text;
+                    $file_data = $pdf->Text;
 
                     // encrypt
                     $plaintext = trim($file_data);

@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class DesModule
 {
+
     function dump($obj)
     {
         echo "<pre>";
@@ -424,8 +425,11 @@ class DesModule
         return $cipher;
     }
 
+    public $proses_encrypt = "";
+
     function encrypt($plaintext, $key, $tampil_proses = false)
     {
+        $this->proses_encrypt = "";
         $tampilText = "$plaintext";
         $key = $this->text2bin($key);
         $key8 = [];
@@ -502,38 +506,37 @@ class DesModule
         $cipher = $this->final_permutation($rl);
 
         if ($tampil_proses) {
-            echo "<table class='table table-responsive'><tbody><tr><td>Text</td><td>:</td><td>$tampilText</td></tr>";
-            echo "<tr><td>Plaintext</td><td>:</td><td>" . $tampilPlaintext8 . "</td></tr>";
-            echo "<tr><td>Password</td><td>:</td><td>" . $tampilKey8 . " </td></tr>";
+            $this->proses_encrypt .= "<table class='table table-responsive'><tbody><tr><td>Text</td><td>:</td><td>$tampilText</td></tr>";
+            $this->proses_encrypt .= "<tr><td>Plaintext</td><td>:</td><td>" . $tampilPlaintext8 . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>Password</td><td>:</td><td>" . $tampilKey8 . " </td></tr>";
 
-            echo "<tr><td>PC1</td><td>:</td><td>" . $tampilPc1 . "</td></tr>";
-            echo "<tr><td>PC2</td><td>:</td><td>" . $tampilPc2 . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>PC1</td><td>:</td><td>" . $tampilPc1 . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>PC2</td><td>:</td><td>" . $tampilPc2 . "</td></tr>";
 
-            echo "<tr><td>C</td><td>:</td><td>" . $tampilC . "</td></tr>";
-            echo "<tr><td>D</td><td>:</td><td>" . $tampild . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>C</td><td>:</td><td>" . $tampilC . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>D</td><td>:</td><td>" . $tampild . "</td></tr>";
 
             foreach ($this->array_tampil_left_shift as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
-            echo "<tr><td>Left Shift</td><td>:</td><td>" . $tampilShiftL . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>Left Shift</td><td>:</td><td>" . $tampilShiftL . "</td></tr>";
 
             foreach ($tampil_expansion as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
             foreach ($tampil_a as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
             foreach ($tampil_b as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
             foreach ($tampil_p as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
 
-
-
-            echo "<tr><td>Hasil Encrypt</td><td>:</td><td>" . $cipher . "</td></tr></tbody></table>";
+            $this->proses_encrypt .= "<tr><td>Hasil Encrypt</td><td>:</td><td>" . $cipher . "</td></tr></tbody></table>";
         }
+
         return $cipher;
     }
 

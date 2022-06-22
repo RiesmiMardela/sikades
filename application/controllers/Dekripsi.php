@@ -77,7 +77,7 @@ class Dekripsi extends CI_Controller
             $password = $this->input->post('password');
 
             if ($data_file['password'] == $password) {
-                $this->load->library('DesModule');
+                $this->load->library('DES');
                 $path = "assets/file_encript/" . $this->input->post('nama_file_enkrip');
 
                 $bin_ciphertext = (string) file_get_contents($path);

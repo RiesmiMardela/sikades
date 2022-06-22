@@ -5,9 +5,8 @@
                 <h6 class="m-0 font-weight-bold text-black">Proses Perhitungan Enkripsi</h6>
             </div>
             <div class="card-body">
-
+                <button onclick='history.back()' type='submit' class='btn btn-info'><i class="fa-solid fa-angles-left"></i></i>Back</button><br><br>
                 <?php
-                echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-back'></i>Back</button><br><br>";
                 foreach ($proses as $data) {
                     echo $data;
                 }

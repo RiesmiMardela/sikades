@@ -155,7 +155,7 @@ class Enkripsi extends CI_Controller
                 if ($_FILES['file']['type'] == "application/pdf") {
                     $this->load->library('pdfgenerator');
 
-                    $this = new this();
+                    // $this = new this();
                     $pdf = new PdftoText($_FILES['file']['tmp_name']);
                     $file_data = $pdf->Text;
 
@@ -180,11 +180,11 @@ class Enkripsi extends CI_Controller
                     $data['proses'] = $tampil_proses;
                 }
 
-                $this->load->view('templates/header', $data);
-                $this->load->view('templates/sidebar', $data);
-                $this->load->view('templates/topbar', $data);
-                $this->load->view('enkripsi/proses', $data);
-                $this->load->view('templates/footer');
+                $data['this']->load->view('templates/header', $data);
+                $data['this']->load->view('templates/sidebar', $data);
+                $data['this']->load->view('templates/topbar', $data);
+                $data['this']->load->view('enkripsi/proses', $data);
+                $data['this']->load->view('templates/footer');
             } else {
                 redirect('Enkripsi');
             }

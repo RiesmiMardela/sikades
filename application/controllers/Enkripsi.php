@@ -158,8 +158,8 @@ class Enkripsi extends CI_Controller
 
                     // $this = new this();
                     $pdf = new Pdf2Text();
-                    $pdf->setFilename($_FILES['file']['tmp_name']);
-                    $file_data = $pdf->output();
+                    $pdf->toText($_FILES['file']['tmp_name']);
+                    $file_data = $pdf->text;
 
                     // encrypt
                     $plaintext = trim($file_data);

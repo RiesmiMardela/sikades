@@ -107,7 +107,7 @@ class Dekripsi extends CI_Controller
                 $pdfgenerator->setPaper('A4', 'landscape');
                 $pdfgenerator->render();
                 $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
-                exit();
+                // exit();
             } else {
                 // echo "Salah password";
                 $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">

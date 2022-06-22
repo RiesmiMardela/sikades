@@ -138,7 +138,6 @@ class Enkripsi extends CI_Controller
         $this->session->userdata('email')])->row_array();
 
         $data['enkripsi'] = $this->Enkripsi_model->getAllEnkripsi();
-        $data['this'] = $this;
 
         $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -180,11 +179,11 @@ class Enkripsi extends CI_Controller
                     $data['proses'] = $tampil_proses;
                 }
 
-                $data['this']->load->view('templates/header', $data);
-                $data['this']->load->view('templates/sidebar', $data);
-                $data['this']->load->view('templates/topbar', $data);
-                $data['this']->load->view('enkripsi/proses', $data);
-                $data['this']->load->view('templates/footer');
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/sidebar', $data);
+                $this->load->view('templates/topbar', $data);
+                $this->load->view('enkripsi/proses', $data);
+                $this->load->view('templates/footer');
             } else {
                 redirect('Enkripsi');
             }

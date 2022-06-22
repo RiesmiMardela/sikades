@@ -62,7 +62,7 @@ class Enkripsi extends CI_Controller
                     // print_r($arr_plaintext);
 
                     // write file txt
-                    $nama_file = $_FILES['file']['name'] . '.txt';
+                    $nama_file = str_replace(".pdf", ".txt", $_FILES['file']['name']);
                     // force_download($nama_file, $bin_ciphertext);
 
                     // Inisialisasi

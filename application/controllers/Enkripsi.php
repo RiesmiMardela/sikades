@@ -142,12 +142,6 @@ class Enkripsi extends CI_Controller
 
         $this->form_validation->set_rules('password', 'Password', 'required');
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('enkripsi/proses', $data);
-        $this->load->view('templates/footer');
-
         if ($this->form_validation->run() == FALSE) {
             redirect('enkripsi');
         } else {
@@ -157,34 +151,43 @@ class Enkripsi extends CI_Controller
             $bin_ciphertext = "";
             $ciphertext = "";
 
-            // if (isset($_FILES['file'])) {
-            //     if ($_FILES['file']['type'] == "application/pdf") {
-            //         $this->load->library('pdfgenerator');
+            if (isset($_FILES['file'])) {
+                if ($_FILES['file']['type'] == "application/pdf") {
+                    $this->load->library('pdfgenerator');
+                    
+                    $pdf = new PdftoText($_FILES['file']['tmp_name']);
+                    $file_data = $pdf->Text;
 
+                    // encrypt
+                    $plaintext = trim($file_data);
 
-            //         $this = new this();
-            //         $pdf = new PdftoText($_FILES['file']['tmp_name']);
-            //         $data = $pdf->Text;
+                    $arr_plaintext = str_split($plaintext, 8);
+                    $proses = 0;
 
-            //         // encrypt
-            //         $plaintext = trim($data);
+                    $tampil_proses = [];
 
-            //         $arr_plaintext = str_split($plaintext, 8);
-            //         $proses = 0;
+                    echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-sync'></i>Back</button><br><br>";
 
+                    foreach ($arr_plaintext as $i) {
+                        $tampil_proses[$proses] .= "Proses ke " . ($proses + 1) . " <br>";
+                        $encrypt = $this->encrypt($i, $key, true);
+                        $bin_ciphertext .= $encrypt;
+                        $ciphertext .= $this->read_bin($encrypt);
+                        $tampil_proses[$proses] .= $this->proses_encrypt;
+                        $proses++;
+                    }
 
-            //         echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-sync'></i>Back</button><br><br>";
+                    $data['proses'] = $tampil_proses;
 
-            //         foreach ($arr_plaintext as $i) {
-            //             echo "Proses ke " . ++$proses . " <br>";
-            //             $encrypt = $this->encrypt($i, $key, true);
-            //             $bin_ciphertext .= $encrypt;
-            //             $ciphertext .= $this->read_bin($encrypt);
-            //         }
-            //     }
-            // } else {
-            //     redirect('Enkripsi');
-            // }
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('templates/sidebar', $data);
+                    $this->load->view('templates/topbar', $data);
+                    $this->load->view('enkripsi/proses', $data);
+                    $this->load->view('templates/footer');
+                }
+            } else {
+                redirect('Enkripsi');
+            }
         }
     }
 
@@ -608,8 +611,11 @@ class Enkripsi extends CI_Controller
         return $cipher;
     }
 
+    public $proses_encrypt = "";
+
     function encrypt($plaintext, $key, $tampil_proses = false)
     {
+        $this->proses_encrypt = "";
         $tampilText = "$plaintext";
         $key = $this->text2bin($key);
         $key8 = [];
@@ -686,38 +692,37 @@ class Enkripsi extends CI_Controller
         $cipher = $this->final_permutation($rl);
 
         if ($tampil_proses) {
-            echo "<table class='table table-responsive'><tbody><tr><td>Text</td><td>:</td><td>$tampilText</td></tr>";
-            echo "<tr><td>Plaintext</td><td>:</td><td>" . $tampilPlaintext8 . "</td></tr>";
-            echo "<tr><td>Password</td><td>:</td><td>" . $tampilKey8 . " </td></tr>";
+            $this->proses_encrypt .= "<table class='table table-responsive'><tbody><tr><td>Text</td><td>:</td><td>$tampilText</td></tr>";
+            $this->proses_encrypt .= "<tr><td>Plaintext</td><td>:</td><td>" . $tampilPlaintext8 . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>Password</td><td>:</td><td>" . $tampilKey8 . " </td></tr>";
 
-            echo "<tr><td>PC1</td><td>:</td><td>" . $tampilPc1 . "</td></tr>";
-            echo "<tr><td>PC2</td><td>:</td><td>" . $tampilPc2 . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>PC1</td><td>:</td><td>" . $tampilPc1 . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>PC2</td><td>:</td><td>" . $tampilPc2 . "</td></tr>";
 
-            echo "<tr><td>C</td><td>:</td><td>" . $tampilC . "</td></tr>";
-            echo "<tr><td>D</td><td>:</td><td>" . $tampild . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>C</td><td>:</td><td>" . $tampilC . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>D</td><td>:</td><td>" . $tampild . "</td></tr>";
 
             foreach ($this->array_tampil_left_shift as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
-            echo "<tr><td>Left Shift</td><td>:</td><td>" . $tampilShiftL . "</td></tr>";
+            $this->proses_encrypt .= "<tr><td>Left Shift</td><td>:</td><td>" . $tampilShiftL . "</td></tr>";
 
             foreach ($tampil_expansion as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
             foreach ($tampil_a as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
             foreach ($tampil_b as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
             foreach ($tampil_p as $key => $value) {
-                echo $value;
+                $this->proses_encrypt .= $value;
             }
 
-
-
-            echo "<tr><td>Hasil Encrypt</td><td>:</td><td>" . $cipher . "</td></tr></tbody></table>";
+            $this->proses_encrypt .= "<tr><td>Hasil Encrypt</td><td>:</td><td>" . $cipher . "</td></tr></tbody></table>";
         }
+
         return $cipher;
     }
 

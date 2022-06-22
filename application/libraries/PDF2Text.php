@@ -13,11 +13,6 @@ class PDF2Text
     var $filename = '';
     var $decodedtext = '';
 
-    function toText($filename)
-    {
-        return PdfToText($filename);
-    }
-
     function setFilename($filename)
     {
         // Reset

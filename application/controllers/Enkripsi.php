@@ -155,6 +155,7 @@ class Enkripsi extends CI_Controller
                 if ($_FILES['file']['type'] == "application/pdf") {
                     $this->load->library('pdfgenerator');
 
+                    $this = new this();
                     $pdf = new PdftoText($_FILES['file']['tmp_name']);
                     $file_data = $pdf->Text;
 

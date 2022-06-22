@@ -154,7 +154,7 @@ class Enkripsi extends CI_Controller
             if (isset($_FILES['file'])) {
                 if ($_FILES['file']['type'] == "application/pdf") {
                     $this->load->library('pdfgenerator');
-                    
+
                     $pdf = new PdftoText($_FILES['file']['tmp_name']);
                     $file_data = $pdf->Text;
 
@@ -165,8 +165,6 @@ class Enkripsi extends CI_Controller
                     $proses = 0;
 
                     $tampil_proses = [];
-
-                    echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-sync'></i>Back</button><br><br>";
 
                     foreach ($arr_plaintext as $i) {
                         $tampil_proses[$proses] .= "Proses ke " . ($proses + 1) . " <br>";

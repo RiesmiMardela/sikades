@@ -7,7 +7,7 @@
             <div class="card-body">
 
                 <?php
-                echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-sync'></i>Back</button><br><br>";
+                echo "<button onclick='history.back()' type='submit' class='btn btn-info'><i class='fas fa-fw fa-back'></i>Back</button><br><br>";
                 foreach ($proses as $data) {
                     echo $data;
                 }

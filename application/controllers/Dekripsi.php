@@ -107,7 +107,7 @@ class Dekripsi extends CI_Controller
                 $this->load->library('Pdfgenerator');
 
 
-                $pdfgenerator = $this->Pdfgenerator;
+                $pdfgenerator = new Pdfgenerator();
                 $pdfgenerator->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
                 // $pdfgenerator->loadHtml("<p>$plaintext</p>");
                 // $pdfgenerator->setPaper('A4', 'landscape');

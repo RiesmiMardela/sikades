@@ -177,13 +177,13 @@ class Enkripsi extends CI_Controller
                     }
 
                     $data['proses'] = $tampil_proses;
-
-                    $this->load->view('templates/header', $data);
-                    $this->load->view('templates/sidebar', $data);
-                    $this->load->view('templates/topbar', $data);
-                    $this->load->view('enkripsi/proses', $data);
-                    $this->load->view('templates/footer');
                 }
+
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/sidebar', $data);
+                $this->load->view('templates/topbar', $data);
+                $this->load->view('enkripsi/proses', $data);
+                $this->load->view('templates/footer');
             } else {
                 redirect('Enkripsi');
             }

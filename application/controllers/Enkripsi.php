@@ -167,6 +167,7 @@ class Enkripsi extends CI_Controller
                     $tampil_proses = [];
 
                     foreach ($arr_plaintext as $i) {
+                        $tampil_proses[$proses] = "";
                         $tampil_proses[$proses] .= "Proses ke " . ($proses + 1) . " <br>";
                         $encrypt = $this->encrypt($i, $key, true);
                         $bin_ciphertext .= $encrypt;

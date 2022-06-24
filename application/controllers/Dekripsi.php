@@ -112,7 +112,7 @@ class Dekripsi extends CI_Controller
 
                 $this->load->library('Pdfgenerator');
                 $dt['plaintext'] = $plaintext;
-                $this->load->view('Dekripsi/downloadPdf', $dt);
+                $ini = $this->load->view('Dekripsi/downloadPdf', $dt);
 
                 echo $plaintext;
 
@@ -120,7 +120,7 @@ class Dekripsi extends CI_Controller
                 ob_end_clean();
 
                 $pdfgenerator = new Pdfgenerator();
-                $pdfgenerator->generate("$plaintext", $data_file['nama_file'], "A4", "landscape", TRUE);
+                $pdfgenerator->generate($ini, $data_file['nama_file'], "A4", "landscape", TRUE);
                 $pdfgenerator->loadHtml($html);
                 $pdfgenerator->setPaper('A4', 'landscape');
                 $pdfgenerator->render();

@@ -117,12 +117,12 @@ class Dekripsi extends CI_Controller
                 // $html = ob_get_contents();
                 // ob_end_clean();
 
-                // $pdfgenerator = new Dompdf();
-                $this->Pdfgenerator->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
-                $this->Pdfgenerator->loadHtml($html);
-                $this->Pdfgenerator->setPaper('A4', 'landscape');
-                $this->Pdfgenerator->render();
-                $this->Pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
+                $pdfgenerator = new Pdfgenerator();
+                $pdfgenerator->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
+                $pdfgenerator->loadHtml($html);
+                $pdfgenerator->setPaper('A4', 'landscape');
+                $pdfgenerator->render();
+                $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
                 exit();
             } else {
                 // echo "Salah password";

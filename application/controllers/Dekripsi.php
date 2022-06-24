@@ -117,6 +117,7 @@ class Dekripsi extends CI_Controller
                 echo $plaintext;
 
                 $html = ob_get_contents();
+                $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
                 ob_end_clean();
 
                 $pdfgenerator = new Pdfgenerator();

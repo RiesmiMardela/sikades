@@ -119,7 +119,7 @@ class Dekripsi extends CI_Controller
                 ob_end_clean();
 
                 $pdfgenerator = new Dompdf();
-                $pdfgenerator->Option->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
+                $pdfgenerator->option->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
                 $pdfgenerator->loadHtml($html);
                 $pdfgenerator->setPaper('A4', 'landscape');
                 $pdfgenerator->render();

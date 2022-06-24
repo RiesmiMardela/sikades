@@ -132,10 +132,17 @@ class Dekripsi extends CI_Controller
                 exit();
             } else {
                 // echo "Salah password";
-                $this->session->set_flashdata('pesan1', '<div class="alert alert-danger" role="alert">
-                    Password salah
-                    </div>');
-                redirect('dekripsi/dekrip/' . $id_file);
+                // $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                //     Password salah
+                //     </div>');
+                // redirect('dekripsi/dekrip/' . $id_file);
+                $data['pesan'] = '<div class="alert alert-danger" role="alert"> Password salah</div>';
+
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/sidebar', $data);
+                $this->load->view('templates/topbar', $data);
+                $this->load->view('Dekripsi/dekrip', $data);
+                $this->load->view('templates/footer');
             }
 
             // $data = [

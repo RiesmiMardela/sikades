@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <script>
-        window.print();
-    </script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        * {
+            font-family: DejaVu Sans, sans-serif;
+        }
+    </style>
 </head>
 
 <body>

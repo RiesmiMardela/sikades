@@ -132,7 +132,7 @@ class Dekripsi extends CI_Controller
                 exit();
             } else {
                 // echo "Salah password";
-                $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('pesan1', '<div class="alert alert-danger" role="alert">
                     Password salah
                     </div>');
                 redirect('dekripsi/dekrip/' . $id_file);

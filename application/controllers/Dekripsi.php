@@ -112,7 +112,7 @@ class Dekripsi extends CI_Controller
 
                 $this->load->library('Pdfgenerator');
                 $dt['plaintext'] = $plaintext;
-                $html = $this->load->view('Dekripsi/downloadPdf', $dt);
+                $this->load->view('Dekripsi/downloadPdf', $dt);
 
                 echo $plaintext;
 

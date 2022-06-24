@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Masukkan Kunci</label>
                     <div class="col-sm-10">
-                        <input type="password" name="password" class="form-control mb-3" placeholder="Password" value="">
+                        <input type="password" name="password" class="form-control mb-3" placeholder="Password">
                         <?php echo $this->session->flashdata('massage'); ?>
                         <!-- <small class="form-text text-danger"><?= form_error('password')  ?></small> -->
                         <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>

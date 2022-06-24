@@ -110,21 +110,21 @@ class Dekripsi extends CI_Controller
 
                 // echo "$plaintext";
 
-                // $this->load->library('Pdfgenerator');
+                $this->load->library('Pdfgenerator');
                 $dt = [];
                 $dt['plaintext'] = $plaintext;
                 $this->load->view('Dekripsi/downloadPdf', $dt);
-                // $html = ob_get_contents();
-                // // ob_end_clean();
 
+                $html = ob_get_contents();
+                ob_end_clean();
 
-                // $pdfgenerator = new Dompdf();
-                // // $pdfgenerator->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
-                // $pdfgenerator->loadHtml($html);
-                // $pdfgenerator->setPaper('A4', 'landscape');
-                // $pdfgenerator->render();
-                // $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
-                // exit();
+                $pdfgenerator = new Dompdf();
+                $pdfgenerator->Option->generate("<p>$plaintext</p>", $data_file['nama_file'], "A4", "landscape", TRUE);
+                $pdfgenerator->loadHtml($html);
+                $pdfgenerator->setPaper('A4', 'landscape');
+                $pdfgenerator->render();
+                $pdfgenerator->stream($data_file['nama_file'], array('Attachment' => 0));
+                exit();
             } else {
                 // echo "Salah password";
                 $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">

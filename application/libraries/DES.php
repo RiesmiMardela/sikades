@@ -12,6 +12,9 @@ class DES
         echo "<br>";
     }
 
+    /**
+     * Mengubah palintext menjadi biner
+     */
     public function text2bin($text)
     {
         $characters = str_split($text);
@@ -36,7 +39,7 @@ class DES
     }
 
     /**
-     * Memnformat Hasil Binery ke format yang benar (8-bit)
+     * Memformat Hasil Binery ke format yang benar (8-bit)
      */
     public function bin8($bin)
     {
@@ -52,6 +55,9 @@ class DES
         return $_bin;
     }
 
+    /**
+     * penyempurnaan dari bin8
+     */
     public function bin4($bin)
     {
         $_bin = "";
@@ -76,6 +82,9 @@ class DES
         return decbin($dec);
     }
 
+    /**
+     * Membaca biner dr fungsi bin2text
+     */
     public function read_bin($bin)
     {
         $out = "";
@@ -86,6 +95,10 @@ class DES
         return $out;
     }
 
+    /**
+     * (pebangkitan kunci)
+     * permutasion compressions
+     */
     public function pc1($key)
     {
         $_pc1 = [
@@ -109,6 +122,10 @@ class DES
 
         return $result;
     }
+
+    /**
+     * melakukan pergeseran ke kiri menghasilkan nilai c dan d
+     */
 
     public $array_tampil_left_shift = [];
 
@@ -153,6 +170,9 @@ class DES
         return $array_cd;
     }
 
+    /**
+     * melakukan permutasion compressions PC2 terhadap nilai c d
+     */
     public function pc2($c, $d)
     {
         $_pc2 = [
@@ -184,6 +204,9 @@ class DES
         return $k;
     }
 
+    /**
+     * melakukan initial permutation pada bit plaintext
+     */
     public function ip($plaintext)
     {
         $_ip = [
@@ -212,6 +235,10 @@ class DES
         return $array_lr;
     }
 
+    /**
+     * (proses enchipering)
+     * melakukan ekspansi 
+     */
     public function expansion($r)
     {
         $_expansion_table = [
@@ -236,6 +263,9 @@ class DES
         return $er;
     }
 
+    /**
+     * melakukan XOR (iterasi) menghsilkan vektor A
+     */
     public function _xor($a, $b)
     {
         if ($a == $b) {
@@ -268,6 +298,9 @@ class DES
         return $array_a;
     }
 
+    /**
+     * subtitusi vektor A ke delapan buah Sbox
+     */
     public function s_box($a)
     {
         $_s1 = [
@@ -378,6 +411,9 @@ class DES
         return $result;
     }
 
+    /**
+     * memutasikan vektor b ke dalam pbox
+     */
     public function p_box($b)
     {
         $_p_box = [
@@ -400,6 +436,9 @@ class DES
         return $pb;
     }
 
+    /**
+     * memutasikan nilai rl ke tabel invers IP
+     */
     public function final_permutation($rl)
     {
         $_fp = [

@@ -465,6 +465,9 @@ class DES
 
     public $proses_encrypt = "";
 
+    /**
+     * variabel berupa $plaintext, $key dan $tampil_proses yang dibungkus di dalam satu function encrypt
+     */
     public function encrypt($plaintext, $key, $tampil_proses = false)
     {
         $this->proses_encrypt = "";
